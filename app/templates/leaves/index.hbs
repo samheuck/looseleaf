@@ -1,7 +1,23 @@
-<h1><i class="fa fa-coffee"></i> Leaves</h1>
+<div class="columns large-1 left">
+  <nav class="icon-bar vertical two-up">
+    {{#link-to "leaves.new" class="item"}}
+      <i class="fa fa-plus-circle"></i>
+      <label>New</label>
+    {{/link-to}}
 
-<ul>
-{{#each leaf in content}}
-  <li>{{#link-to "leaf.index" leaf.id}}{{leaf.title}}{{/link-to}}</li>
-{{/each}}
-</ul>
+    {{#link-to "" class="item"}}
+      <i class="fa fa-search"></i>
+      <label>Search</label>
+    {{/link-to}}
+  </nav>
+</div>
+
+<div class="columns large-11">
+  <h1><i class="fa fa-coffee"></i> Leaves</h1>
+
+  <ul>
+  {{#each leaf in content}}
+    <li>{{#link-to "leaf.index" leaf.id}}{{leaf.title}}{{/link-to}}</li>
+  {{/each}}
+  </ul>
+</div>
