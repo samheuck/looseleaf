@@ -1,0 +1,7 @@
+<h1><i class="fa fa-coffee"></i> Leaves</h1>
+
+<ul>
+{{#each leaf in content}}
+  <li>{{#link-to "leaf.index" leaf.id}}{{leaf.title}}{{/link-to}}</li>
+{{/each}}
+</ul>
