@@ -16,15 +16,30 @@ var app = new EmberApp();
 // modules that you would like to import into your application
 // please specify an object with the list of modules as keys
 // along with the exports of each module as its value.
+
+/**
+ * Foundation imports.
+ */
 app.import('bower_components/foundation/js/foundation.js');
 app.import('bower_components/foundation/css/normalize.css');
 app.import('bower_components/foundation/css/normalize.css.map', {destDir: 'assets'});
 app.import('bower_components/foundation/css/foundation.css');
 app.import('bower_components/foundation/css/foundation.css.map', {destDir: 'assets'});
+
+/**
+ * Font awesome
+ */
 app.import('bower_components/font-awesome/css/font-awesome.css');
 app.import('bower_components/font-awesome/fonts/fontawesome-webfont.ttf', {destDir: 'fonts'});
 app.import('bower_components/font-awesome/fonts/fontawesome-webfont.svg', {destDir: 'fonts'});
 app.import('bower_components/font-awesome/fonts/fontawesome-webfont.eot', {destDir: 'fonts'});
 app.import('bower_components/font-awesome/fonts/fontawesome-webfont.woff', {destDir: 'fonts'});
 app.import('bower_components/font-awesome/fonts/FontAwesome.otf', {destDir: 'fonts'});
+
+/**
+ * Non ES6 JS.
+ */
+app.import('bower_components/ember-couchdb-kit/dist/ember-couchdb-kit.js');
+app.import('bower_components/marked/lib/marked.js');
+
 module.exports = app.toTree();

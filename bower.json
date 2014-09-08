@@ -9,7 +9,9 @@
     "ember-cli-shims": "stefanpenner/ember-cli-shims#0.0.3",
     "ember-cli-test-loader": "rwjblue/ember-cli-test-loader#0.0.4",
     "ember-load-initializers": "stefanpenner/ember-load-initializers#0.0.2",
-    "font-awesome": "~4.2.0"
+    "font-awesome": "~4.2.0",
+    "ember-couchdb-kit": "~1.0.0",
+    "marked": "~0.3.2"
   },
   "devDependencies": {
     "foundation": "~5.4.3"

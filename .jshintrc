@@ -3,7 +3,9 @@
     "document": true,
     "window": true,
     "-Promise": true,
-    "LooseleafENV": true
+    "LooseleafENV": true,
+    "EmberCouchDBKit": true,
+    "marked": true
   },
   "browser" : true,
   "boss" : true,

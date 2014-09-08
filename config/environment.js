@@ -5,6 +5,10 @@ module.exports = function(environment) {
     environment: environment,
     baseURL: '/',
     locationType: 'hash',
+
+    dbHost: 'http://localhost:5984',
+    dbName: 'looseleaf',
+
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build

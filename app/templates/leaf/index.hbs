@@ -1,25 +1,25 @@
 <div class="small-3 medium-2 large-1 columns">
   <nav class="icon-bar vertical three-up">
-    {{#link-to "leaves" class="item"}}
-      <i class="fa fa-arrow-circle-left"></i>
-      <label>Back</label>
-    {{/link-to}}
-
-    {{#link-to "leaf" class="item"}}
+    {{#link-to "leaf.edit" model class="item"}}
       <i class="fa fa-edit"></i>
       <label>Edit</label>
     {{/link-to}}
 
-    <a href="#" class="item" {{action "save"}}>
-      <i class="fa fa-save"></i>
-      <label>Save</label>
+    <a href="#" class="item" {{action "delete" model}}>
+      <i class="fa fa-remove"></i>
+      <label>Delete</label>
+    </a>
+
+    <a href="#" class="item" {{action "back"}}>
+      <i class="fa fa-arrow-circle-left"></i>
+      <label>Back</label>
     </a>
   </nav>
 </div>
 
 <div class="small-9 medium-10 large-11 columns">
-  <section>
+  <article>
     <h1>{{title}}</h1>
-    <p>{{body}}</p>
-  </section>
+    {{parse-markdown body}}
+  </article>
 </div>

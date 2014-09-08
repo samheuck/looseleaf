@@ -10,10 +10,10 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
   this.resource('leaves', function () {
-    this.route('new');
   });
 
   this.resource('leaf', { path: '/leaf/:id' }, function() {
+    this.route('edit');
   });
 });
 
