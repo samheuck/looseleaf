@@ -1,5 +1,20 @@
 # Looseleaf
 
+## CouchDB
+
+```json
+{
+   "_id": "_design/leaf",
+   "_rev": "9-08104e98ed749675c36d7ef0f2952d00",
+   "language": "javascript",
+   "views": {
+       "all": {
+           "map": "function(doc) { emit(doc.type, null); }"
+       }
+   }
+}
+```
+
 This README outlines the details of collaborating on this Ember application.
 
 A short introduction of this app could easily go here.
