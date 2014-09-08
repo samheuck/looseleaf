@@ -2,8 +2,8 @@ import DS from 'ember-data';
 
 var leaf = DS.Model.extend({
     type: DS.attr('string', {defaultValue: 'leaf'}),
-    title: DS.attr('string'),
-    body: DS.attr('string')
+    title: DS.attr('string', {defaultValue: ''}),
+    body: DS.attr('string', {defaultValue: ''})
 });
 
 export default leaf;

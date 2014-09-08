@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Notify from 'ember-notify';
 
 export default Ember.Route.extend({
     model: function(params) {
@@ -7,11 +8,14 @@ export default Ember.Route.extend({
 
     actions: {
         delete: function(leaf) {
+            var title = leaf.get('title');
+
             leaf.one('didDelete', this, function() {
                 this.transitionTo('leaves');
             });
 
             leaf.destroyRecord();
+            Notify.info({raw: '<i class="fa fa-info-circle"></i> ' + title + ' deleted.'});
         }
     }
 

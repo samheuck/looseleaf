@@ -41,5 +41,11 @@ app.import('bower_components/font-awesome/fonts/FontAwesome.otf', {destDir: 'fon
  */
 app.import('bower_components/ember-couchdb-kit/dist/ember-couchdb-kit.js');
 app.import('bower_components/marked/lib/marked.js');
+app.import('bower_components/highlightjs/highlight.pack.js');
+
+/**
+ * CSS
+ */
+app.import('bower_components/highlightjs/styles/docco.css');
 
 module.exports = app.toTree();

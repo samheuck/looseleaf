@@ -1,66 +1,47 @@
 # Looseleaf
 
-## CouchDB
-
-```json
-{
-   "_id": "_design/leaf",
-   "_rev": "9-08104e98ed749675c36d7ef0f2952d00",
-   "language": "javascript",
-   "views": {
-       "all": {
-           "map": "function(doc) { emit(doc.type, null); }"
-       }
-   }
-}
-```
-
-This README outlines the details of collaborating on this Ember application.
-
-A short introduction of this app could easily go here.
-
 ## Prerequisites
 
-You will need the following things properly installed on your computer.
-
-* [Git](http://git-scm.com/)
-* [Node.js](http://nodejs.org/) (with NPM) and [Bower](http://bower.io/)
+  - [CouchDB]()
+  - [EmberCli]()
+  - [Node.js]()
+  - [Bower]()
 
 ## Installation
 
-* `git clone <repository-url>` this repository
-* change into the new directory
-* `npm install`
-* `bower install`
+  - `git clone <repository-url>` this repository
+  - `npm install`
+  - `bower install`
 
-## Running / Development
+  ### CouchDB
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+  ```json
+  {
+     "_id": "_design/leaf",
+     "views": {
+         "all": {
+             "map": "function(doc) { emit(doc.type, null); }"
+         }
+     }
+  }
+  ```
 
-### Code Generators
-
-Make use of the many generators for code, try `ember help generate` for more details
-
-### Running Tests
+## Running Tests
 
 * `ember test`
 * `ember test --server`
 
-### Building
+## Building
 
 * `ember build` (development)
 * `ember build --environment production` (production)
 
-### Deploying
-
-Specify what it takes to deploy your app.
+## Deployment
 
 ## Further Reading / Useful Links
 
-* ember: http://emberjs.com/
-* ember-cli: http://www.ember-cli.com/
-* Development Browser Extensions
-  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+  - ember: http://emberjs.com
+  - ember-cli: http://www.ember-cli.com/
 
+  - [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
+  - [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)

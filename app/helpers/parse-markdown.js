@@ -8,7 +8,10 @@ marked.setOptions({
     pedantic: false,
     sanitize: false,
     smartLists: true,
-    smartypants: false
+    smartypants: false,
+    highlight: function (code) {
+        return hljs.highlightAuto(code).value;
+    }
 });
 
 export default Ember.Handlebars.makeBoundHelper(function (text) {
