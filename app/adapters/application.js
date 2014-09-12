@@ -1,6 +1,6 @@
 var adapter = EmberCouchDBKit.DocumentAdapter.extend({
     host: LooseleafENV.dbHost,
-    db: LooseleafENV.dbName,
+    db: LooseleafENV.dbName
 });
 
 adapter.reopen({

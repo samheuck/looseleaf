@@ -38,6 +38,24 @@
 
       <div class="row">
         <div class="small-12 columns">
+          {{#view "attachment-view" context=model}}
+            <a href="#" class="button tiny" {{action "attach" target=view}}><i class="fa fa-paperclip"></i> Attach</a>
+          {{/view}}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-12 columns">
+          <ul class="no-bullet">
+          {{#each attachment in attachments}}
+            <li><i class="fa fa-times-circle" {{action "deleteAttachment" attachment}}></i> {{linkto-attachment attachment}}</li>
+          {{/each}}
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="small-12 columns">
           <label>Body
             {{textarea type="text" value=body}}
           </label>

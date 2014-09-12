@@ -12,7 +12,7 @@ export default Ember.Route.extend({
 
             leaf.save().then(function () {
                 Notify.success({raw:'<i class="fa fa-cloud-upload"></i> Leaf Saved!'});
-                route.transitionTo("leaf", leaf.get('id'));
+                route.transitionTo('leaf', leaf.get('id'));
             }).catch(function (response) {
                 if (response.status === 409) {
                     Notify.warning({raw: '<i class="fa fa-exclamation-circle"></i> Data is stale. Reload before saving.'});
@@ -21,9 +21,7 @@ export default Ember.Route.extend({
         },
 
         reload: function(leaf) {
-            if (leaf.get('isNew')) {
-                return;
-            } else {
+            if (!leaf.get('isNew')) {
                 leaf.reload();
                 Notify.info({raw: '<i class="fa fa-info-circle"></i> Data has been refreshed.'});
             }
@@ -36,9 +34,9 @@ export default Ember.Route.extend({
             } else if (leaf.get('isDirty')) {
                 leaf.rollback();
                 Notify.info({raw: '<i class="fa fa-info-circle"></i> Changes reverted.'});
-                this.transitionTo("leaf", leaf.get('id'));
+                this.transitionTo('leaf', leaf.get('id'));
             } else {
-                this.transitionTo("leaf", leaf.get('id'));
+                this.transitionTo('leaf', leaf.get('id'));
             }
         }
     }
