@@ -3,7 +3,7 @@ import Notify from 'ember-notify';
 
 export default Ember.Route.extend({
     model: function() {
-        return this.modelFor('leaf');
+        return this.modelFor('leaf').reload();
     },
 
     actions: {
@@ -22,8 +22,9 @@ export default Ember.Route.extend({
 
         reload: function(leaf) {
             if (!leaf.get('isNew')) {
-                leaf.reload();
-                Notify.info({raw: '<i class="fa fa-info-circle"></i> Data has been refreshed.'});
+                leaf.reload().then(function () {
+                    Notify.info({raw: '<i class="fa fa-info-circle"></i> Data has been refreshed.'});
+                });
             }
         },
 
