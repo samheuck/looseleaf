@@ -3,7 +3,13 @@ import Notify from 'ember-notify';
 
 export default Ember.Route.extend({
     model: function() {
-        return this.modelFor('leaf').reload();
+        return this.modelFor('leaf');
+    },
+
+    afterModel: function(model) {
+        if (!model.get('isNew')) {
+            model.reload();
+        }
     },
 
     actions: {
