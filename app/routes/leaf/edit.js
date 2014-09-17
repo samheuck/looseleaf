@@ -21,7 +21,7 @@ export default Ember.Route.extend({
                 route.transitionTo('leaf', leaf.get('id'));
             }).catch(function (response) {
                 if (response.status === 409) {
-                    Notify.warning({raw: '<i class="fa fa-exclamation-circle"></i> Data is stale. Reload before saving.'});
+                    Notify.warning({raw: '<i class="fa fa-exclamation-circle"></i> Leaf is stale. Reload before saving.'});
                 }
             });
         },
@@ -29,7 +29,7 @@ export default Ember.Route.extend({
         reload: function(leaf) {
             if (!leaf.get('isNew')) {
                 leaf.reload().then(function () {
-                    Notify.info({raw: '<i class="fa fa-info-circle"></i> Data has been refreshed.'});
+                    Notify.info({raw: '<i class="fa fa-info-circle"></i> Leaf has been refreshed.'});
                 });
             }
         },
