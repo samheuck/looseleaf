@@ -18,15 +18,6 @@ var app = new EmberApp();
 // along with the exports of each module as its value.
 
 /**
- * Foundation imports.
- */
-app.import('bower_components/foundation/js/foundation.js');
-app.import('bower_components/foundation/css/normalize.css');
-app.import('bower_components/foundation/css/normalize.css.map', {destDir: 'assets'});
-app.import('bower_components/foundation/css/foundation.css');
-app.import('bower_components/foundation/css/foundation.css.map', {destDir: 'assets'});
-
-/**
  * Font awesome
  */
 app.import('bower_components/font-awesome/css/font-awesome.css');
@@ -46,6 +37,6 @@ app.import('bower_components/highlightjs/highlight.pack.js');
 /**
  * CSS
  */
-app.import('bower_components/highlightjs/styles/docco.css');
+app.import('bower_components/highlightjs/styles/monokai_sublime.css');
 
 module.exports = app.toTree();

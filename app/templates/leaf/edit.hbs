@@ -48,7 +48,7 @@
         <div class="small-12 columns">
           <ul class="no-bullet">
           {{#each attachment in attachments}}
-            <li><i class="fa fa-times-circle" {{action "deleteAttachment" attachment}}></i> {{linkto-attachment attachment}}</li>
+            <li><i class="fa fa-times-circle clickable" {{action "deleteAttachment" attachment}}></i> {{linkto-attachment attachment}}</li>
           {{/each}}
           </ul>
         </div>

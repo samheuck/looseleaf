@@ -5,7 +5,7 @@ export default Ember.View.extend({
     attributeBindings: ['style', 'type', 'multiple'],
     style: 'display:none',
     type: 'file',
-    multiple: false,
+    multiple: true,
 
     actions: {
         attach: function() {

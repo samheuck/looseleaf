@@ -1,3 +1,10 @@
+$hover: rgb(0, 123, 160);
+
+.clickable:hover {
+    cursor: pointer;
+    color: $hover;
+}
+
 .row {
     max-width: 1600px;
 }
@@ -8,33 +15,34 @@
 }
 
 .tiny.button {
+    font-size: 0.75em;
     font-variant: small-caps;
     font-weight: bold;
-    font-size: 0.75em;
 }
 
 pre {
-    background-color: #f8f8ff;
+    background-color: #23241f;
     border-radius: 3px;
     display: block;
     font-size: 85%;
     line-height: 1.45;
-    margin-top: 0;
     margin-bottom: 1em;
+    margin-top: 0;
     overflow: auto;
     padding: 1em;
 }
 
 pre code {
-    display: inline;
-    max-width: initial;
-    padding: 0;
-    margin: 0;
-    overflow: initial;
-    line-height: inherit;
-    word-wrap: normal;
     background-color: transparent;
-    border: 0
+    border: 0;
+    color: white;
+    display: inline;
+    line-height: inherit;
+    margin: 0;
+    max-width: initial;
+    overflow: initial;
+    padding: 0;
+    word-wrap: normal;
 }
 
 section, article {
@@ -43,10 +51,10 @@ section, article {
 
 textarea {
     border-radius: 3px;
-    font-family: droid_sansregular, monaco, monospace;
+    font-family: DejaVuSansMono, monaco, courier, monospace;
     height: 500px;
     overflow: scroll;
     resize: none;
-    width: 100%;
     white-space: nowrap;
+    width: 100%;
 }
