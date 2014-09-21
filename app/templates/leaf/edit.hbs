@@ -36,6 +36,7 @@
           </div>
         </div>
 
+        {{#unless isNew}}
         <div class="row">
           <div class="small-12 columns">
             {{#view "view-attachment" context=model}}
@@ -43,7 +44,9 @@
             {{/view}}
           </div>
         </div>
+        {{/unless}}
 
+        {{#if attachments}}
         <div class="row">
           <div class="small-12 columns">
             <ul class="no-bullet">
@@ -53,6 +56,7 @@
             </ul>
           </div>
         </div>
+        {{/if}}
 
         <div class="row">
           <div class="small-12 columns">
