@@ -36,22 +36,57 @@
           </div>
         </div>
 
-        {{#unless isNew}}
+        <div class="row">
+          <div class="small-12 medium-6 columns">
+            <div class="row collapse prefix-radius">
+              <div class="small-3 columns">
+                <a {{action "addTag"}} href="#" class="button prefix" for="tags"><i class="fa fa-plus-circle"></i> Tag</a>
+              </div>
+
+              <div class="small-9 columns">
+                {{input type="text" value=selectedTag list="matching-tags"}}
+
+                <datalist id="matching-tags">
+                {{#each obj in matchingTags}}
+                  <option {{bind-attr value=obj.tag}}>
+                {{/each}}
+                </datalist>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="small-12 columns">
+            <ul class="inline-list">
+              {{#each tags}}
+                <li class="label secondary radius">
+                  <span><i class="fa fa-remove clickable" {{action "removeTag" this}}></i> {{this.tag}}</span>
+                </li>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+
         <div class="row">
           <div class="small-12 columns">
             {{#view "view-attachment" context=model}}
-              <a href="#" class="button tiny" {{action "attach" target=view}}><i class="fa fa-paperclip"></i> Attach</a>
+              <a href="#" class="button tiny" {{action "attach" target=view}}>
+                <i class="fa fa-paperclip"></i> Attach
+              </a>
             {{/view}}
           </div>
         </div>
-        {{/unless}}
 
         {{#if attachments}}
         <div class="row">
           <div class="small-12 columns">
             <ul class="no-bullet">
             {{#each attachment in attachments}}
-              <li><i class="fa fa-times-circle clickable" {{action "deleteAttachment" attachment}}></i> {{linkto-attachment attachment}}</li>
+              <li>
+                <i class="fa fa-times-circle clickable" {{action "deleteAttachment" attachment}}></i>
+                {{linkto-attachment attachment}}
+              </li>
             {{/each}}
             </ul>
           </div>
@@ -62,8 +97,6 @@
           <div class="small-12 columns">
             <label class="label">Body</label>
             {{view "view-editor" value=body}}
-
-              {{!-- {{textarea type="text" value=body}} --}}
           </div>
         </div>
       </form>

@@ -13,17 +13,30 @@
   - `npm install`
   - `bower install`
 
-  ### CouchDB
+  ### CouchDB Design Docs
 
   ```json
   {
      "_id": "_design/leaf",
+     "language": "javascript",
      "views": {
          "all": {
-             "map": "function(doc) { emit(doc.type, null); }"
+             "map": "function(doc) { if (doc.title && doc.body) emit(doc.type, doc.title); }"
          }
      }
   }
+
+  {
+   "_id": "_design/tag",
+   "language": "javascript",
+   "views": {
+       "all": {
+           "map": "function(doc) { if (doc.tag) emit(doc.type, doc.tag); }"
+       },
+       "substrings": {
+           "map": "function(doc) { var i; if (doc.tag) { for (i = 1; i <= doc.tag.length; i += 1) { emit(doc.tag.substring(0, i), doc.tag); }}}"
+       }
+   }
   ```
 
 ## Running Tests

@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Notify from 'ember-notify';
 
 export default Ember.Route.extend({
     model: function() {
@@ -7,10 +8,16 @@ export default Ember.Route.extend({
 
     actions: {
         new: function() {
-            var leaf;
+            var route = this,
+                leaf = this.store.createRecord('leaf');
 
-            leaf = this.store.createRecord('leaf');
-            this.transitionTo('leaf.edit', leaf.get('id'));
+            leaf.save().then(function () {
+                route.transitionTo('leaf.edit', leaf.get('id'));
+                Notify.success({raw: '<i class="fa"></i> New leaf created!'});
+            }).catch(function (e) {
+                console.log(e);
+                Notify.warning({raw: '<i class="fa"></i> Something went wrong...'});
+            });
         }
     }
 });

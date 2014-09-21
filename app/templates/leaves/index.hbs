@@ -18,7 +18,15 @@
 
     <ul>
     {{#each leaf in content}}
-      <li>{{#link-to "leaf" leaf.id}}{{leaf.title}}{{/link-to}}</li>
+      <li>
+        {{#link-to "leaf" leaf.id}}
+          {{#if leaf.title}}
+            {{leaf.title}}
+          {{else}}
+            No title
+          {{/if}}
+        {{/link-to}}
+      </li>
     {{/each}}
     </ul>
   </section>

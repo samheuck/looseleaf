@@ -5,8 +5,7 @@
     "-Promise": true,
     "LooseleafENV": true,
     "EmberCouchDBKit": true,
-    "marked": true,
-    "hljs": true
+    "$": true
   },
   "browser" : true,
   "boss" : true,
