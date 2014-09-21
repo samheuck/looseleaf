@@ -6,11 +6,11 @@ $hover: rgb(0, 123, 160);
 }
 
 .row {
-    max-width: 1600px;
+    max-width: 100em;
 }
 
 .fix-height {
-    height: 650px;
+    height: 690px;
     overflow: scroll;
 }
 
@@ -18,6 +18,12 @@ $hover: rgb(0, 123, 160);
     font-size: 0.75em;
     font-variant: small-caps;
     font-weight: bold;
+}
+
+.fieldset {
+    border: solid 1px #d8d8d8;
+    padding: 1em;
+    width: 100%;
 }
 
 pre {
@@ -45,16 +51,10 @@ pre code {
     word-wrap: normal;
 }
 
-section, article {
-    padding: 1em;
-}
-
 textarea {
     border-radius: 3px;
     font-family: DejaVuSansMono, monaco, courier, monospace;
-    height: 500px;
     overflow: scroll;
     resize: none;
-    white-space: nowrap;
     width: 100%;
 }

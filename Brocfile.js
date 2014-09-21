@@ -35,6 +35,16 @@ app.import('bower_components/marked/lib/marked.js');
 app.import('bower_components/highlightjs/highlight.pack.js');
 
 /**
+ * CodeMirror
+ */
+app.import('bower_components/codemirror/lib/codemirror.css');
+app.import('bower_components/codemirror/lib/codemirror.js');
+app.import('bower_components/codemirror/mode/markdown/markdown.js')
+app.import('bower_components/codemirror/keymap/sublime.js')
+app.import('bower_components/codemirror/addon/edit/closebrackets.js')
+app.import('bower_components/codemirror/addon/edit/matchbrackets.js')
+
+/**
  * CSS
  */
 app.import('bower_components/highlightjs/styles/monokai_sublime.css');

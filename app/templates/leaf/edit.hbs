@@ -19,50 +19,51 @@
 
 <div class="small-9 medium-10 large-11 columns">
   <section class="small-12 large-6 columns">
-    <form>
-    <fieldset>
-      <legend>Edit Leaf</legend>
-      <div class="row">
-        <div class="small-12 medium-6 columns">
-          <div class="row collapse prefix-radius">
-            <div class="small-3 columns">
-              <label class="prefix" for="title">Title</label>
-            </div>
+    <span class="label">Edit</span>
+    <div class="fieldset">
+      <form>
+        <div class="row">
+          <div class="small-12 medium-6 columns">
+            <div class="row collapse prefix-radius">
+              <div class="small-3 columns">
+                <label class="prefix" for="title">Title</label>
+              </div>
 
-            <div class="small-9 columns">
-              {{input type="text" value=title id="title" placeholder="Title"}}
+              <div class="small-9 columns">
+                {{input type="text" value=title id="title" placeholder="Title"}}
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="small-12 columns">
-          {{#view "attachment-view" context=model}}
-            <a href="#" class="button tiny" {{action "attach" target=view}}><i class="fa fa-paperclip"></i> Attach</a>
-          {{/view}}
+        <div class="row">
+          <div class="small-12 columns">
+            {{#view "view-attachment" context=model}}
+              <a href="#" class="button tiny" {{action "attach" target=view}}><i class="fa fa-paperclip"></i> Attach</a>
+            {{/view}}
+          </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="small-12 columns">
-          <ul class="no-bullet">
-          {{#each attachment in attachments}}
-            <li><i class="fa fa-times-circle clickable" {{action "deleteAttachment" attachment}}></i> {{linkto-attachment attachment}}</li>
-          {{/each}}
-          </ul>
+        <div class="row">
+          <div class="small-12 columns">
+            <ul class="no-bullet">
+            {{#each attachment in attachments}}
+              <li><i class="fa fa-times-circle clickable" {{action "deleteAttachment" attachment}}></i> {{linkto-attachment attachment}}</li>
+            {{/each}}
+            </ul>
+          </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="small-12 columns">
-          <label>Body
-            {{textarea type="text" value=body}}
-          </label>
+        <div class="row">
+          <div class="small-12 columns">
+            <label class="label">Body</label>
+            {{view "view-editor" value=body}}
+
+              {{!-- {{textarea type="text" value=body}} --}}
+          </div>
         </div>
-      </div>
-    </fieldset>
-    </form>
+      </form>
+    </div>
   </section>
 
   <section class="small-12 large-6 columns">
