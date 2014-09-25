@@ -44,7 +44,7 @@
               </div>
 
               <div class="small-9 columns">
-                {{input type="text" value=selectedTag list="matching-tags"}}
+                {{input type="text" value=selectedTag list="matching-tags" autocomplete="off"}}
 
                 <datalist id="matching-tags">
                 {{#each obj in matchingTags}}

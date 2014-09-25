@@ -15,6 +15,9 @@ Router.map(function() {
   this.resource('leaf', { path: '/leaf/:id' }, function() {
     this.route('edit');
   });
+
+  this.resource('tags', function() {
+  });
 });
 
 export default Router;

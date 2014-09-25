@@ -26,12 +26,26 @@ $hover: rgb(0, 123, 160);
     width: 100%;
 }
 
+.label.med {
+    font-size: 0.825em;
+}
+
+.block {
+    border: solid 1px #d8d8d8;
+    padding: 1em;
+}
+
+i.large {
+    display: block;
+    font-size: 2em;
+}
+
 pre {
     background-color: #23241f;
     border-radius: 3px;
     display: block;
     font-size: 85%;
-    line-height: 1.45;
+    line-height: 1.1375em;
     margin-bottom: 1em;
     margin-top: 0;
     overflow: auto;
@@ -57,4 +71,25 @@ textarea {
     overflow: scroll;
     resize: none;
     width: 100%;
+}
+
+article {
+    padding-bottom: 2em;
+}
+
+h3, h4 {
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+h3 {
+    font-size: 1em;
+}
+
+h4 {
+    font-size: 0.825em;
+}
+
+section {
+    margin-top: 0.5em;
 }

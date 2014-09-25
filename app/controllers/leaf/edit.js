@@ -30,32 +30,35 @@ export default Ember.ObjectController.extend({
     actions: {
         addTag: function() {
             var controller = this,
+                leaf = controller.get('model'),
                 selectedTag = this.get('selectedTag'),
-                matchedTag = this.get('matchingTags').findBy('tag', selectedTag);
+                matchedTag = this.get('matchingTags').findBy('tag', selectedTag),
+                tagToAdd = matchedTag ?
+                    controller.store.find('tag', matchedTag.id):
+                    controller.store.createRecord('tag', {tag: selectedTag}).save();
 
-            if (matchedTag) {
-                controller.store.find('tag', matchedTag.id).then(function (tag) {
-                    controller.get('tags').then(function (tags) {
-                        tags.pushObject(tag);
+                tagToAdd.then(function (tag) {
+                    leaf.get('tags').then(function (tags) {
+                        tags.addObject(tag);
+                    });
+
+                    tag.get('leaves').then(function (leaves) {
+                        leaves.addObject(leaf);
+                        tag.save();
                     });
                 });
-            } else {
-                var newTag = controller.store.createRecord('tag', {
-                    tag: selectedTag,
-                }).save();
-
-                newTag.then(function (tag) {
-                    Notify.success({raw: '<i class="fa fa-upload"></i> New tag created'});
-                    controller.get('tags').then(function (tags) {
-                        tags.pushObject(tag);
-                    });
-                });
-            }
 
             this.set('selectedTag', null);
         },
 
         removeTag: function(tag) {
+            var leaf = this.get('model');
+
+            tag.get('leaves').then(function (leaves) {
+                leaves.removeObject(leaf);
+                tag.save();
+            });
+
             this.get('tags').then(function (tags) {
                 tags.removeObject(tag);
             });

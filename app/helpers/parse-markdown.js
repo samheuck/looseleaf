@@ -1,3 +1,5 @@
+/* global marked */
+/* global hljs */
 import Ember from "ember";
 
 marked.setOptions({

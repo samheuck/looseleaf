@@ -2,7 +2,7 @@ import DS from 'ember-data';
 
 var leaf = DS.Model.extend({
     type: DS.attr('string', {defaultValue: 'leaf'}),
-    tags: DS.hasMany('tag', {async: true}),
+    tags: DS.hasMany('tag', {async: true, inverse: 'leaves'}),
     title: DS.attr('string', {defaultValue: ''}),
     body: DS.attr('string', {defaultValue: ''}),
     parent: DS.belongsTo('leaf', {async: true, inverse: 'children'}),
