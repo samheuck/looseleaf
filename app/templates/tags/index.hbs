@@ -3,22 +3,22 @@
     {{#each content}}
       <h3>{{this.tag}}</h3>
 
+      <ul class="small-block-grid large-block-grid-6">
       {{#each this.leaves}}
-        <ul class="large-block-grid-6">
-          <li class="clickable text-center">
-            <div class="block">
-              <i class="fa fa-leaf large"></i>
-              {{#link-to "leaf" this}}
-                {{#if this.title}}
-                  {{this.title}}
-                {{else}}
-                  No title
-                {{/if}}
-              {{/link-to}}
-            </div>
-          </li>
-        </ul>
+        <li class="clickable text-center">
+          <div class="block">
+            <i class="fa fa-leaf large"></i>
+            {{#link-to "leaf" this}}
+              {{#if this.title}}
+                {{this.title}}
+              {{else}}
+                No title
+              {{/if}}
+            {{/link-to}}
+          </div>
+        </li>
       {{/each}}
+      </ul>
     {{/each}}
   </section>
 </div>
