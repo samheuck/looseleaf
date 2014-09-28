@@ -28,6 +28,7 @@ export default Ember.Route.extend({
 
         reload: function(leaf) {
             if (!leaf.get('isNew')) {
+                leaf.rollback();
                 leaf.reload().then(function () {
                     Notify.info({raw: '<i class="fa fa-info-circle"></i> Leaf has been refreshed.'});
                 });
@@ -45,6 +46,10 @@ export default Ember.Route.extend({
             } else {
                 this.transitionTo('leaf', leaf.get('id'));
             }
+        },
+
+        error: function(error, transition) {
+            console.log(error);
         }
     }
 });

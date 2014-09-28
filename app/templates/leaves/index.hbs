@@ -1,5 +1,5 @@
-<div class="small-3 medium-2 large-1 columns">
-  <nav class="icon-bar vertical two-up">
+<div class="small-12 medium-2 large-1 columns">
+  <nav class="icon-bar medium-vertical two-up">
     <a href="#" class="item" {{action "new"}}>
       <i class="fa fa-plus-circle"></i>
       <label>New</label>
@@ -12,14 +12,13 @@
   </nav>
 </div>
 
-<div class="small-9 medium-10 large-11 columns">
+<div class="small-12 medium-10 large-11 columns">
   <section>
-    <h1><i class="fa fa-leaf"></i> Leaves</h1>
-
-    <ul>
+    <ul class="fa-ul">
     {{#each leaf in content}}
       <li>
         {{#link-to "leaf" leaf.id}}
+        <i class="fa-li fa fa-leaf"></i>
           {{#if leaf.title}}
             {{leaf.title}}
           {{else}}

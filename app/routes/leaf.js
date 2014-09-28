@@ -14,8 +14,34 @@ export default Ember.Route.extend({
                 this.transitionTo('leaves');
             });
 
-            leaf.destroyRecord();
-            Notify.info({raw: '<i class="fa fa-info-circle"></i> ' + title + ' deleted.'});
+            leaf.get('tags').then(function (tags) {
+                Ember.RSVP.all(tags.map(function(tag) {
+                    var leaf = this;
+
+                    return new Ember.RSVP.Promise(function (resolve) {
+                        (function update(tag) {
+                            tag.get('leaves').then(function (leaves) {
+                                leaves.removeObject(leaf);
+
+                                tag.save().then(function () {
+                                    resolve();
+                                }).catch(function (res) {
+                                    if (409 === res.status) {
+                                        tag.rollback();
+
+                                        tag.reload().then(function (tag) {
+                                            update(tag);
+                                        });
+                                    }
+                                });
+                            });
+                        })(tag);
+                    });
+                }, leaf)).then(function () {
+                    leaf.destroyRecord();
+                    Notify.success({raw: '<i class="fa fa-info-circle"></i> %@ deleted.'.fmt(title)});
+                });
+            });
         }
     }
 

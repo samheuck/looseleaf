@@ -1,10 +1,12 @@
 .CodeMirror {
     border-collapse: separate;
     border: solid 1px rgb(204, 204, 204);
+    color: $text-default;
     font-family: DejaVuSansMono, monaco, courier, monospace;
     font-size: .875em;
     height: 500px;
-    line-height: 1.1375em;
+    line-height: 1.6em;
+    max-width: 60em;
 }
 
 .CodeMirror-focused {

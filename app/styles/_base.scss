@@ -1,4 +1,10 @@
 $hover: rgb(0, 123, 160);
+$text-default: #444;
+
+.preview {
+    max-height: 780px;
+    overflow-y: scroll;
+}
 
 .clickable:hover {
     cursor: pointer;
@@ -9,15 +15,20 @@ $hover: rgb(0, 123, 160);
     max-width: 100em;
 }
 
-.fix-height {
-    height: 690px;
-    overflow: scroll;
-}
-
 .tiny.button {
     font-size: 0.75em;
     font-variant: small-caps;
     font-weight: bold;
+}
+
+.fa-li {
+    top: 0.4em;
+}
+
+.no-hover {
+    &:hover {
+        background: inherit;
+    }
 }
 
 .fieldset {
@@ -68,13 +79,13 @@ pre code {
 textarea {
     border-radius: 3px;
     font-family: DejaVuSansMono, monaco, courier, monospace;
-    overflow: scroll;
     resize: none;
     width: 100%;
 }
 
 article {
     padding-bottom: 2em;
+    max-width: 60em;
 }
 
 h3, h4 {
@@ -92,4 +103,5 @@ h4 {
 
 section {
     margin-top: 0.5em;
+    padding-bottom: 1em;
 }

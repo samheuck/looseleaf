@@ -1,5 +1,5 @@
-<div class="small-3 medium-2 large-1 columns">
-  <nav class="icon-bar vertical three-up">
+<div class="small-12 medium-2 large-1 columns">
+  <nav class="icon-bar medium-vertical three-up">
     {{#link-to "leaf.edit" model class="item"}}
       <i class="fa fa-edit"></i>
       <label>Edit</label>
@@ -17,19 +17,18 @@
   </nav>
 </div>
 
-<div class="small-9 medium-10 large-11 columns">
+<div class="small-12 medium-10 large-11 columns">
   <article>
     <h1>{{title}}</h1>
+    {{parse-markdown body}}
+  </article>
 
-    {{#if tags}}
+  {{#if tags}}
     <h4>Tags</h4>
     <ul class="inline-list">
       {{#each tags}}
         <li><span class="label secondary radius med">{{this.tag}}</span></li>
       {{/each}}
     </ul>
-    {{/if}}
-
-    {{parse-markdown body}}
-  </article>
+  {{/if}}
 </div>

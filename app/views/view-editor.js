@@ -10,13 +10,13 @@ var editorView = Ember.View.extend({
             value = self.get('value'),
             codemirror = new CodeMirror.fromTextArea(el, {
                 mode: 'markdown',
-                lineNumbers: true,
+                lineWrapping: true,
                 keyMap: 'sublime',
                 matchBrackets: true,
-                autoCloseBrackets: true
+                autoCloseBrackets: true,
             });
 
-        codemirror.on("change", function (instance) {
+        codemirror.on("change", function (instance, change) {
             Ember.run(function () {
                 self.set('value', instance.getValue());
             });

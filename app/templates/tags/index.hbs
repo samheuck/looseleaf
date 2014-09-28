@@ -1,24 +1,22 @@
-<div class="small-9 medium-10 large-11 columns">
-  <section>
-    {{#each content}}
-      <h3>{{this.tag}}</h3>
+<div class="small-12 columns">
+  {{#each content}}
+  <section class="panel">
+      <h2><i class="fa fa-tag"></i> {{this.tag}}</h2>
 
       <ul class="small-block-grid large-block-grid-6">
       {{#each this.leaves}}
         <li class="clickable text-center">
-          <div class="block">
-            <i class="fa fa-leaf large"></i>
-            {{#link-to "leaf" this}}
-              {{#if this.title}}
-                {{this.title}}
-              {{else}}
-                No title
-              {{/if}}
-            {{/link-to}}
-          </div>
+        {{#link-to "leaf" this}}
+          <i class="fa fa-leaf large"></i>
+          {{#if this.title}}
+            {{this.title}}
+          {{else}}
+            No title
+          {{/if}}
+        {{/link-to}}
         </li>
       {{/each}}
       </ul>
-    {{/each}}
   </section>
+  {{/each}}
 </div>

@@ -2,6 +2,7 @@ import Ember from 'ember';
 import Notify from 'ember-notify';
 
 export default Ember.ObjectController.extend({
+    showPreview: true,
     matchingTags: Ember.ArrayProxy.create(),
 
     updateMatchingTags: function() {
@@ -15,7 +16,7 @@ export default Ember.ObjectController.extend({
         $.ajax(url).then(
             function (response) {
                 var result = JSON.parse(response);
-
+                console.log(result);
                 if (result.rows.length) {
                     controller.get('matchingTags').set('content', result.rows.map(function (match) {
                         return {tag: match.value, id: match.id};
@@ -37,16 +38,34 @@ export default Ember.ObjectController.extend({
                     controller.store.find('tag', matchedTag.id):
                     controller.store.createRecord('tag', {tag: selectedTag}).save();
 
-                tagToAdd.then(function (tag) {
-                    leaf.get('tags').then(function (tags) {
-                        tags.addObject(tag);
-                    });
+            tagToAdd.then(function (tag) {
+                leaf.get('tags').then(function (tags) {
+                    tags.addObject(tag);
 
-                    tag.get('leaves').then(function (leaves) {
-                        leaves.addObject(leaf);
-                        tag.save();
+                    leaf.save().then(function () {
+                        (function updateTag(tag) {
+                            tag.get('leaves').then(function (leaves) {
+                                leaves.addObject(leaf);
+
+                                tag.save().catch(function (res) {
+                                    if (409 === res.status) {
+                                        tag.rollback();
+                                        tag.reload().then(function (tag) {
+                                            updateTag(tag);
+                                        });
+                                    }
+                                });
+                            });
+                        })(tag);
+
+                        Notify.success({raw: '<i class="fa fa-upload"></i> Tag added.'});
+                    }).catch(function (res) {
+                        if (409 === res.status) {
+                            Notify.warning({raw: '<i class="fa fa-warning"></i> Leaf is stale, reload and try again.'});
+                        }
                     });
                 });
+            });
 
             this.set('selectedTag', null);
         },
@@ -54,13 +73,31 @@ export default Ember.ObjectController.extend({
         removeTag: function(tag) {
             var leaf = this.get('model');
 
-            tag.get('leaves').then(function (leaves) {
-                leaves.removeObject(leaf);
-                tag.save();
-            });
-
-            this.get('tags').then(function (tags) {
+            leaf.get('tags').then(function (tags) {
                 tags.removeObject(tag);
+
+                leaf.save().then(function () {
+                    (function updateTag(tag) {
+                        tag.get('leaves').then(function (leaves) {
+                            leaves.removeObject(leaf);
+
+                            tag.save().catch(function (res) {
+                                if (409 === res.status) {
+                                    tag.rollback();
+                                    tag.reload().then(function (tag) {
+                                        updateTag(tag);
+                                    });
+                                }
+                            });
+                        });
+                    })(tag);
+
+                    Notify.info({raw: '<i class="fa fa-info-circle"></i> Tag removed.'});
+                }).catch(function (res) {
+                    if (409 === res.status) {
+                        Notify.warning({raw: '<i class="fa fa-warning"></i> Leaf is stale, reload and try again.'});
+                    }
+                });
             });
         },
 
@@ -81,8 +118,8 @@ export default Ember.ObjectController.extend({
             }
 
             function updateLeaf(attachment) {
-                leaf.get('attachments').then(function (array) {
-                    array.pushObject(attachment);
+                leaf.get('attachments').then(function (attachments) {
+                    attachments.pushObject(attachment);
                     Notify.success({raw: '<i class="fa fa-upload"</i> Attachment saved!'});
                 });
 

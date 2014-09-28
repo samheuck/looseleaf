@@ -1,24 +1,32 @@
-<div class="small-3 medium-2 large-1 columns">
-  <nav class="icon-bar vertical three-up">
-    <a href="#" class="item" {{action "save" model}}>
+<div class="small-12 medium-2 large-1 columns">
+  <nav class="icon-bar medium-vertical four-up">
+    <a class="item" {{action "save" model}}>
       <i class="fa fa-save"></i>
       <label>Save</label>
     </a>
 
-    <a href="#" class="item" {{action "reload" model}}>
+    <a class="item" {{action "reload" model}}>
       <i class="fa fa-refresh"></i>
       <label>Reload</label>
     </a>
 
-    <a href="#" class="item" {{action "cancel" model}}>
-      <i class="fa fa-edit"></i>
+    <a class="item" {{action "cancel" model}}>
+      <i class="fa fa-close"></i>
       <label>Cancel</label>
+    </a>
+
+    <a class="item no-hover">
+      <i class="switch small radius">
+        {{input type="checkbox" name="showPreview" checked=showPreview id="showPreview"}}
+        <label for="showPreview"></label>
+      </i>
+      <label>Preview</label>
     </a>
   </nav>
 </div>
 
-<div class="small-9 medium-10 large-11 columns">
-  <section class="small-12 large-6 columns">
+<div class="small-12 medium-10 large-11 columns">
+  <section {{bind-attr class="showPreview:large-6:large-12 :small-12 :columns"}}>
     <span class="label">Edit</span>
     <div class="fieldset">
       <form>
@@ -103,13 +111,15 @@
     </div>
   </section>
 
+  {{#if showPreview}}
   <section class="small-12 large-6 columns">
     <span class="label">Preview</span>
-    <div class="panel fix-height">
+    <div class="panel preview">
       <article>
         <h1>{{title}}</h1>
         {{parse-markdown body}}
       </article>
     </div>
   </section>
+  {{/if}}
 </div>
