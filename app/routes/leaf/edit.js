@@ -21,7 +21,7 @@ export default Ember.Route.extend({
                 route.transitionTo('leaf', leaf.get('id'));
             }).catch(function (response) {
                 if (response.status === 409) {
-                    Notify.warning({raw: '<i class="fa fa-exclamation-circle"></i> Leaf is stale. Reload before saving.'});
+                    Notify.warning({raw: '<i class="fa fa-warning"></i> Leaf is stale. Reload before saving.'});
                 }
             });
         },
@@ -46,10 +46,6 @@ export default Ember.Route.extend({
             } else {
                 this.transitionTo('leaf', leaf.get('id'));
             }
-        },
-
-        error: function(error, transition) {
-            console.log(error);
         }
     }
 });

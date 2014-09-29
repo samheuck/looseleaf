@@ -8,8 +8,13 @@ var tagsIndex = Ember.Route.extend({
 
     actions: {
         deleteTag: function(tag) {
-            tag.destroyRecord();
-            Notify.info({raw: '<i class="fa fa-info-circle"></i> Tag removed.'});
+                console.log(tag);
+            tag.get('leaves').then(function (leaves) {
+                if (0 === leaves.get('length')) {
+                    tag.destroyRecord();
+                    Notify.info({raw: '<i class="fa fa-info-circle"></i> Tag removed.'});
+                }
+            });
         }
     }
 });

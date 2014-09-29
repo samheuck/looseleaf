@@ -3,6 +3,7 @@
   <section class="panel">
       <h2><i class="fa fa-tag"></i> {{this.tag}}</h2>
 
+      {{#if this.leaves}}
       <ul class="small-block-grid large-block-grid-6">
       {{#each this.leaves}}
         <li class="clickable text-center">
@@ -17,6 +18,9 @@
         </li>
       {{/each}}
       </ul>
+      {{else}}
+        <i class="fa fa-remove clickable" {{action "deleteTag" this}}> Delete Tag</i>
+      {{/if}}
   </section>
   {{/each}}
 </div>

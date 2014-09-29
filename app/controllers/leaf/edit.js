@@ -13,19 +13,17 @@ export default Ember.ObjectController.extend({
                 this.get('selectedTag')
             );
 
-        $.ajax(url).then(
-            function (response) {
-                var result = JSON.parse(response);
-                console.log(result);
-                if (result.rows.length) {
-                    controller.get('matchingTags').set('content', result.rows.map(function (match) {
-                        return {tag: match.value, id: match.id};
-                    }));
-                } else {
-                    controller.get('matchingTags').set('content', []);
-                }
+        $.ajax(url).then(function (response) {
+            var result = JSON.parse(response);
+
+            if (result.rows.length) {
+                controller.get('matchingTags').set('content', result.rows.map(function (match) {
+                    return {tag: match.value, id: match.id};
+                }));
+            } else {
+                controller.get('matchingTags').set('content', []);
             }
-        );
+        });
     }.observes('selectedTag'),
 
     actions: {
@@ -58,7 +56,7 @@ export default Ember.ObjectController.extend({
                             });
                         })(tag);
 
-                        Notify.success({raw: '<i class="fa fa-upload"></i> Tag added.'});
+                        Notify.success({raw: '<i class="fa fa-cloud-upload"></i> Tag added.'});
                     }).catch(function (res) {
                         if (409 === res.status) {
                             Notify.warning({raw: '<i class="fa fa-warning"></i> Leaf is stale, reload and try again.'});
@@ -120,7 +118,7 @@ export default Ember.ObjectController.extend({
             function updateLeaf(attachment) {
                 leaf.get('attachments').then(function (attachments) {
                     attachments.pushObject(attachment);
-                    Notify.success({raw: '<i class="fa fa-upload"</i> Attachment saved!'});
+                    Notify.success({raw: '<i class="fa fa-cloud-upload"></i> Attachment saved!'});
                 });
 
                 leaf.reload();

@@ -15,11 +15,11 @@ export default Ember.Route.extend({
             });
 
             leaf.get('tags').then(function (tags) {
-                Ember.RSVP.all(tags.map(function(tag) {
+                Ember.RSVP.all(tags.map(function (tag) {
                     var leaf = this;
 
-                    return new Ember.RSVP.Promise(function (resolve) {
-                        (function update(tag) {
+                    return new Ember.RSVP.Promise(function (resolve, reject) {
+                        (function removeLeafFromTag(tag) {
                             tag.get('leaves').then(function (leaves) {
                                 leaves.removeObject(leaf);
 
@@ -30,8 +30,10 @@ export default Ember.Route.extend({
                                         tag.rollback();
 
                                         tag.reload().then(function (tag) {
-                                            update(tag);
+                                            removeLeafFromTag(tag);
                                         });
+                                    } else {
+                                        reject();
                                     }
                                 });
                             });
