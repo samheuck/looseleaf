@@ -15,7 +15,6 @@ export default Ember.Route.extend({
                 route.transitionTo('leaf.edit', leaf.get('id'));
                 Notify.success({raw: '<i class="fa"></i> New leaf created!'});
             }).catch(function (e) {
-                console.log(e);
                 Notify.warning({raw: '<i class="fa"></i> Something went wrong...'});
             });
         }

@@ -24,6 +24,10 @@ export default Ember.ObjectController.extend({
                 controller.get('matchingTags').set('content', []);
             }
         });
+    },
+
+    selectedTagChanged: function() {
+        Ember.run.debounce(this, this.updateMatchingTags, 500);
     }.observes('selectedTag'),
 
     actions: {
