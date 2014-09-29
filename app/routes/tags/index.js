@@ -8,7 +8,6 @@ var tagsIndex = Ember.Route.extend({
 
     actions: {
         deleteTag: function(tag) {
-                console.log(tag);
             tag.get('leaves').then(function (leaves) {
                 if (0 === leaves.get('length')) {
                     tag.destroyRecord();

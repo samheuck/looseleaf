@@ -100,20 +100,22 @@ export default Ember.ObjectController.extend({
         },
 
         addAttachment: function(files, leaf) {
-            for (var i = 0; i < files.length; i++) {
-                var attachment = this.store.createRecord('attachment', {
-                    id: '%@/%@'.fmt(leaf.get('id'), files[0].name),
-                    doc_id: leaf.get('id'),
-                    rev: leaf._data.rev,
-                    model_name: 'leaf',
-                    file: files[0],
-                    content_type: files[0].type,
-                    length: files[0].size,
-                    file_name: files[0].name
-                });
+            leaf.save().then(function () {
+                for (var i = 0; i < files.length; i++) {
+                    var attachment = this.store.createRecord('attachment', {
+                        id: '%@/%@'.fmt(leaf.get('id'), files[0].name),
+                        doc_id: leaf.get('id'),
+                        rev: leaf._data.rev,
+                        model_name: 'leaf',
+                        file: files[0],
+                        content_type: files[0].type,
+                        length: files[0].size,
+                        file_name: files[0].name
+                    });
 
-                attachment.save().then(updateLeaf);
-            }
+                    attachment.save().then(updateLeaf);
+                }
+            });
 
             function updateLeaf(attachment) {
                 leaf.get('attachments').then(function (attachments) {
