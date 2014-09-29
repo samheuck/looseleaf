@@ -100,9 +100,11 @@ export default Ember.ObjectController.extend({
         },
 
         addAttachment: function(files, leaf) {
+            var controller = this;
+
             leaf.save().then(function () {
                 for (var i = 0; i < files.length; i++) {
-                    var attachment = this.store.createRecord('attachment', {
+                    var attachment = controller.store.createRecord('attachment', {
                         id: '%@/%@'.fmt(leaf.get('id'), files[0].name),
                         doc_id: leaf.get('id'),
                         rev: leaf._data.rev,
