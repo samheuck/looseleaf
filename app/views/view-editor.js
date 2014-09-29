@@ -16,7 +16,7 @@ var editorView = Ember.View.extend({
                 autoCloseBrackets: true,
             });
 
-        codemirror.on("change", function (instance, change) {
+        codemirror.on("change", function (instance) {
             Ember.run(function () {
                 self.set('value', instance.getValue());
             });
