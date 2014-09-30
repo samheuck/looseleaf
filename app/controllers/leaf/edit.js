@@ -30,6 +30,23 @@ export default Ember.ObjectController.extend({
         Ember.run.debounce(this, this.updateMatchingTags, 500);
     }.observes('selectedTag'),
 
+    updateTag: function(tag, op) {
+        var controller = this;
+
+        tag.get('leaves').then(function (leaves) {
+            op(leaves);
+
+            tag.save().catch(function (res) {
+                if (409 === res.status) {
+                    tag.rollback();
+                    tag.reload().then(function (tag) {
+                        controller.updateTag(tag, op);
+                    });
+                }
+            });
+        });
+    },
+
     actions: {
         addTag: function() {
             var controller = this,
@@ -45,20 +62,9 @@ export default Ember.ObjectController.extend({
                     tags.addObject(tag);
 
                     leaf.save().then(function () {
-                        (function updateTag(tag) {
-                            tag.get('leaves').then(function (leaves) {
-                                leaves.addObject(leaf);
-
-                                tag.save().catch(function (res) {
-                                    if (409 === res.status) {
-                                        tag.rollback();
-                                        tag.reload().then(function (tag) {
-                                            updateTag(tag);
-                                        });
-                                    }
-                                });
-                            });
-                        })(tag);
+                        controller.updateTag(tag, function (leaves) {
+                            leaves.addObject(leaf);
+                        });
 
                         Notify.success({raw: '<i class="fa fa-cloud-upload"></i> Tag added.'});
                     }).catch(function (res) {
@@ -73,26 +79,16 @@ export default Ember.ObjectController.extend({
         },
 
         removeTag: function(tag) {
-            var leaf = this.get('model');
+            var controller = this,
+                leaf = this.get('model');
 
             leaf.get('tags').then(function (tags) {
                 tags.removeObject(tag);
 
                 leaf.save().then(function () {
-                    (function updateTag(tag) {
-                        tag.get('leaves').then(function (leaves) {
-                            leaves.removeObject(leaf);
-
-                            tag.save().catch(function (res) {
-                                if (409 === res.status) {
-                                    tag.rollback();
-                                    tag.reload().then(function (tag) {
-                                        updateTag(tag);
-                                    });
-                                }
-                            });
-                        });
-                    })(tag);
+                    controller.updateTag(tag, function (leaves) {
+                        leaves.removeObject(leaf);
+                    });
 
                     Notify.info({raw: '<i class="fa fa-info-circle"></i> Tag removed.'});
                 }).catch(function (res) {

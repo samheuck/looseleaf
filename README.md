@@ -21,7 +21,7 @@
      "language": "javascript",
      "views": {
          "all": {
-             "map": "function(doc) { if (doc.title && doc.body) emit(doc.type, doc.title); }"
+             "map": "function(doc) { if (doc.title) emit(doc.type, doc.title); }"
          }
      }
   }
@@ -34,7 +34,7 @@
            "map": "function(doc) { if (doc.tag) emit(doc.type, doc.tag); }"
        },
        "substrings": {
-           "map": "function(doc) { var i; if (doc.tag) { for (i = 1; i <= doc.tag.length; i += 1) { emit(doc.tag.substring(0, i), doc.tag); }}}"
+           "map": "function (doc) { var i; if (doc.tag) { emit(doc.tag, doc.tag); doc.tag.split(' ').map(function (token) {  for (i = 1; i <= token.length; i += 1) { emit(token.substring(0, i), doc.tag); }}); }}"
        }
    }
   ```
