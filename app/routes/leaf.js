@@ -23,9 +23,7 @@ export default Ember.Route.extend({
                             tag.get('leaves').then(function (leaves) {
                                 leaves.removeObject(leaf);
 
-                                tag.save().then(function () {
-                                    resolve();
-                                }).catch(function (res) {
+                                tag.save().then(resolve).catch(function (res) {
                                     if (409 === res.status) {
                                         tag.rollback();
 
@@ -46,5 +44,4 @@ export default Ember.Route.extend({
             });
         }
     }
-
 });
