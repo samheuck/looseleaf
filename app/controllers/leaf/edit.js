@@ -30,17 +30,17 @@ export default Ember.ObjectController.extend({
         Ember.run.debounce(this, this.updateMatchingTags, 500);
     }.observes('selectedTag'),
 
-    updateTag: function(tag, op) {
+    updateTag: function(tag, updateLeaves) {
         var controller = this;
 
         tag.get('leaves').then(function (leaves) {
-            op(leaves);
+            updateLeaves(leaves);
 
             tag.save().catch(function (res) {
                 if (409 === res.status) {
                     tag.rollback();
                     tag.reload().then(function (tag) {
-                        controller.updateTag(tag, op);
+                        controller.updateTag(tag, updateLeaves);
                     });
                 }
             });
