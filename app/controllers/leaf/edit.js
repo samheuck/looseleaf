@@ -1,3 +1,4 @@
+import config from '../../config/environment';
 import Ember from 'ember';
 import Notify from 'ember-notify';
 
@@ -8,8 +9,8 @@ export default Ember.ObjectController.extend({
     updateMatchingTags: function() {
         var controller = this,
             url = "%@/%@/_design/tag/_view/substrings?include_docs=false&key=%22%@%22".fmt(
-                LooseleafENV.dbHost,
-                LooseleafENV.dbName,
+                config.dbHost,
+                config.dbName,
                 this.get('selectedTag')
             );
 

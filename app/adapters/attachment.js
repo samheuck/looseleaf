@@ -1,4 +1,6 @@
+import config from '../config/environment';
+
 export default EmberCouchDBKit.AttachmentAdapter.extend({
-    host: LooseleafENV.dbHost,
-    db: LooseleafENV.dbName
+    host: config.dbHost,
+    db: config.dbName
 });

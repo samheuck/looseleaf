@@ -1,6 +1,8 @@
+import config from '../config/environment';
+
 var adapter = EmberCouchDBKit.DocumentAdapter.extend({
-    host: LooseleafENV.dbHost,
-    db: LooseleafENV.dbName
+    host: config.dbHost,
+    db: config.dbName
 });
 
 adapter.reopen({
