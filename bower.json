@@ -21,5 +21,11 @@
     "foundation": "~5.4.3",
     "highlightjs": "~8.0.0",
     "codemirror": "~4.6.0"
+  },
+  "resolutions": {
+    "ember-data": "1.0.0-beta.10",
+    "qunit": "~1.15.0",
+    "ember": "1.7.0",
+    "jquery": ">= 2.1.0"
   }
 }
