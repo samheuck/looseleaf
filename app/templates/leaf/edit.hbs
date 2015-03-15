@@ -78,11 +78,7 @@
 
         <div class="row">
           <div class="small-12 columns">
-            {{#view "view-attachment" context=model}}
-              <a href="#" class="button tiny" {{action "attach" target=view}}>
-                <i class="fa fa-paperclip"></i> Attach
-              </a>
-            {{/view}}
+            {{add-attachment document=model action="addAttachment"}}
           </div>
         </div>
 

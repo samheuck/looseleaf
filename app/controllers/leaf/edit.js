@@ -100,33 +100,30 @@ export default Ember.ObjectController.extend({
             });
         },
 
-        addAttachment: function(files, leaf) {
-            var controller = this;
+        addAttachment: function(file, leaf) {
+            var self = this;
+            leaf.save().then(createAttachment);
 
-            leaf.save().then(function () {
-                for (var i = 0; i < files.length; i++) {
-                    var attachment = controller.store.createRecord('attachment', {
-                        id: '%@/%@'.fmt(leaf.get('id'), files[0].name),
-                        doc_id: leaf.get('id'),
-                        rev: leaf._data.rev,
-                        model_name: 'leaf',
-                        file: files[0],
-                        content_type: files[0].type,
-                        length: files[0].size,
-                        file_name: files[0].name
+            function createAttachment(leaf) {
+                self.store.createRecord('attachment', {
+                    id: '%@/%@'.fmt(leaf.get('id'), file.name),
+                    doc_id: leaf.get('id'),
+                    rev: leaf._data.rev,
+                    model_name: 'leaf',
+                    file: file,
+                    content_type: file.type,
+                    length: file.size,
+                    file_name: file.name
+                })
+                .save()
+                .then(function attachNewAttachment(attachment) {
+                    leaf.get('attachments').then(function (attachments) {
+                        attachments.pushObject(attachment);
+                        Notify.success({raw: '<i class="fa fa-cloud-upload"></i> Attacment saved'});
                     });
 
-                    attachment.save().then(updateLeaf);
-                }
-            });
-
-            function updateLeaf(attachment) {
-                leaf.get('attachments').then(function (attachments) {
-                    attachments.pushObject(attachment);
-                    Notify.success({raw: '<i class="fa fa-cloud-upload"></i> Attachment saved!'});
+                    leaf.reload();
                 });
-
-                leaf.reload();
             }
         },
 
