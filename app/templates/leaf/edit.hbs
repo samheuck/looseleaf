@@ -67,9 +67,9 @@
         <div class="row">
           <div class="small-12 columns">
             <ul class="inline-list">
-              {{#each tags}}
+              {{#each tag in tags}}
                 <li class="label secondary radius">
-                  <span><i class="fa fa-remove clickable" {{action "removeTag" this}}></i> {{this.tag}}</span>
+                  <span><i class="fa fa-remove clickable" {{action "removeTag" tag}}></i> {{tag.tag}}</span>
                 </li>
               {{/each}}
             </ul>
