@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.View.extend({
     tagName: 'input',
     attributeBindings: ['style', 'type', 'multiple'],
-    style: 'display:none',
+
     type: 'file',
     multiple: true,
 
