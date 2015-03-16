@@ -89,7 +89,9 @@
             {{#each attachment in attachments}}
               <li>
                 <i class="fa fa-times-circle clickable" {{action "deleteAttachment" attachment}}></i>
-                {{linkto-attachment attachment}}
+                {{#attachment-link uri=attachment.id}}
+                  {{attachment.file_name}}
+                {{/attachment-link}}
               </li>
             {{/each}}
             </ul>

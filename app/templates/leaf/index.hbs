@@ -18,17 +18,30 @@
 </div>
 
 <div class="small-12 medium-10 large-11 columns">
+  {{#if tags}}
+    <h4>Tags</h4>
+    <ul class="inline-list">
+      {{#each tag in tags}}
+        <li><span class="label secondary radius med">{{tag.tag}}</span></li>
+      {{/each}}
+    </ul>
+  {{/if}}
+
+  {{#if attachments}}
+    <h4>Attachments</h4>
+    <ul class="no-bullet">
+    {{#each attachment in attachments}}
+      <li><i class="fa fa-paperclip"></i>
+        {{#attachment-link uri=attachment.id}}
+          {{attachment.file_name}}
+        {{/attachment-link}}
+      </li>
+    {{/each}}
+    </ul>
+  {{/if}}
+
   <article>
     <h1>{{title}}</h1>
     {{parse-markdown body}}
   </article>
-
-  {{#if tags}}
-    <h4>Tags</h4>
-    <ul class="inline-list">
-      {{#each tags}}
-        <li><span class="label secondary radius med">{{this.tag}}</span></li>
-      {{/each}}
-    </ul>
-  {{/if}}
 </div>
