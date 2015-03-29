@@ -1,16 +1,16 @@
 <div class="small-12 columns">
-  {{#each content}}
+  {{#each tag in content}}
   <section class="panel">
-      <h2><i class="fa fa-tag"></i> {{this.tag}}</h2>
+      <h2><i class="fa fa-tag"></i> {{tag.tag}}</h2>
 
-      {{#if this.leaves}}
+      {{#if tag.leaves}}
       <ul class="small-block-grid-1 medium-block-grid-4 large-block-grid-6">
-      {{#each this.leaves}}
+      {{#each leaf in tag.leaves}}
         <li class="clickable text-center">
-        {{#link-to "leaf" this}}
+        {{#link-to "leaf" leaf}}
           <i class="fa fa-leaf large"></i>
-          {{#if this.title}}
-            {{this.title}}
+          {{#if leaf.title}}
+            {{leaf.title}}
           {{else}}
             No title
           {{/if}}
@@ -19,7 +19,7 @@
       {{/each}}
       </ul>
       {{else}}
-        <i class="fa fa-remove clickable" {{action "deleteTag" this}}> Delete Tag</i>
+        <i class="fa fa-remove clickable" {{action "deleteTag" tag}}> Delete Tag</i>
       {{/if}}
   </section>
   {{/each}}
