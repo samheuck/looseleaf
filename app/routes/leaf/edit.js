@@ -14,11 +14,8 @@ export default Ember.Route.extend({
 
     actions: {
         save: function(leaf) {
-            var route = this;
-
             leaf.save().then(function () {
                 Notify.success({raw:'<i class="fa fa-cloud-upload"></i> Leaf Saved!'});
-                route.transitionTo('leaf', leaf.get('id'));
             }).catch(function (response) {
                 if (response.status === 409) {
                     Notify.warning({raw: '<i class="fa fa-warning"></i> Leaf is stale. Reload before saving.'});

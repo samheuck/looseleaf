@@ -6,6 +6,10 @@ export default Ember.ObjectController.extend({
     showPreview: true,
     matchingTags: Ember.ArrayProxy.create(),
 
+    selectedTagChanged: function() {
+        Ember.run.debounce(this, this.updateMatchingTags, 500);
+    }.observes('selectedTag'),
+
     updateMatchingTags: function() {
         var controller = this,
             url = "%@/%@/_design/tag/_view/substrings?include_docs=false&key=%22%@%22".fmt(
@@ -26,10 +30,6 @@ export default Ember.ObjectController.extend({
             }
         });
     },
-
-    selectedTagChanged: function() {
-        Ember.run.debounce(this, this.updateMatchingTags, 500);
-    }.observes('selectedTag'),
 
     updateTag: function(tag, updateLeaves) {
         var controller = this;
