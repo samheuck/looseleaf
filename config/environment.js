@@ -26,7 +26,7 @@ module.exports = function(environment) {
       'default-src': "'none'",
       'script-src': "'self'",
       'font-src': "'self'",
-      'connect-src': "'self' http://localhost:5984",
+      'connect-src': "'self' http://localhost:5984 ws://127.0.0.1:35729/livereload",
       'img-src': "'self'",
       'style-src': "'self' 'unsafe-inline'",
       'media-src': "'self'"
@@ -34,9 +34,9 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
-    // ENV.APP.LOG_RESOLVER = true;
+    ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
-    // ENV.APP.LOG_TRANSITIONS = true;
+    ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
   }
@@ -53,9 +53,8 @@ module.exports = function(environment) {
     ENV.APP.rootElement = '#ember-testing';
   }
 
-  if (environment === 'production') {
-
-  }
+  // if (environment === 'production') {
+  // }
 
   return ENV;
 };
