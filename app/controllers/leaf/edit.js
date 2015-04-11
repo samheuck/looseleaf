@@ -102,10 +102,15 @@ export default Ember.ObjectController.extend({
 
         addAttachment: function(file, leaf) {
             var self = this;
-            leaf.save().then(createAttachment);
+            var promise = leaf.get('isDirty') ? leaf.save() : Ember.RSVP.resolve(leaf);
+
+            promise
+            .then(createAttachment)
+            .then(notify)
+            .catch(error);
 
             function createAttachment(leaf) {
-                self.store.createRecord('attachment', {
+                var attachment = {
                     id: '%@/%@'.fmt(leaf.get('id'), file.name),
                     doc_id: leaf.get('id'),
                     rev: leaf._data.rev,
@@ -114,16 +119,19 @@ export default Ember.ObjectController.extend({
                     content_type: file.type,
                     length: file.size,
                     file_name: file.name
-                })
-                .save()
-                .then(function attachNewAttachment(attachment) {
-                    leaf.get('attachments').then(function (attachments) {
-                        attachments.pushObject(attachment);
-                        Notify.success({raw: '<i class="fa fa-cloud-upload"></i> Attacment saved'});
-                    });
+                };
 
-                    leaf.reload();
-                });
+                return self.store.createRecord('attachment', attachment).save();
+            }
+
+            function notify() {
+                leaf.reload();
+                Notify.success({raw: '<i class="fa fa-cloud-upload"></i> Attacment saved'});
+            }
+
+            function error(err) {
+                console.log(err);
+                Notify.error('Something went wrong...');
             }
         },
 
