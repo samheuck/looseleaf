@@ -1,8 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-    redirect: function() {
-        this.transitionTo('tags');
+    redirect: function(model, transition) {
+        if ('index' === transition.targetName) {
+            this.transitionTo('tags');
+        }
     },
 
     actions: {
