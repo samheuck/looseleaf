@@ -4,7 +4,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
     tagName: "textarea",
 
-    didInsertElement: function() {
+    editor: function() {
         var self = this;
 
         var el = self.$().get(0);
@@ -27,7 +27,7 @@ export default Ember.Component.extend({
         codemirror.setValue(body);
 
         this.set('editor', codemirror);
-    },
+    }.on('didInsertElement'),
 
     update: function() {
         var editor = this.get('editor');
