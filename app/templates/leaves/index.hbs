@@ -1,22 +1,9 @@
-<div class="small-12 medium-2 large-1 columns">
-  <nav class="icon-bar medium-vertical two-up">
-    <a href="#" class="item" {{action "new"}}>
-      <i class="fa fa-plus-circle"></i>
-      <label>New</label>
-    </a>
-
-    {{#link-to "" class="item"}}
-      <i class="fa fa-search"></i>
-      <label>Find</label>
-    {{/link-to}}
-  </nav>
-</div>
-
-<div class="small-12 medium-10 large-11 columns">
-  <section>
+<section class="small-12 medium-4 columns">
+  <span class="label">Leaves</span>
+  <div class="panel">
     <ul class="fa-ul">
     {{#each leaf in content}}
-      <li>
+      <li {{action "preview" leaf on="mouseEnter"}}>
         {{#link-to "leaf" leaf.id}}
         <i class="fa-li fa fa-leaf"></i>
           {{#if leaf.title}}
@@ -28,5 +15,17 @@
       </li>
     {{/each}}
     </ul>
-  </section>
-</div>
+  </div>
+</section>
+
+{{#if previewing}}
+<section class="small-12 medium-8 columns">
+  <span class="label">Preview</span>
+  <div class="panel preview">
+    <article>
+      <h1>{{previewing.title}}</h1>
+      {{parse-markdown previewing.body}}
+    </article>
+  </div>
+</section>
+{{/if}}
