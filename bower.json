@@ -14,7 +14,8 @@
     "qunit": "~1.17.1",
     "font-awesome": "~4.2.0",
     "ember-couchdb-kit": "samheuck/ember-couchdb-kit#master",
-    "marked": "~0.3.2"
+    "marked": "~0.3.2",
+    "ember-cli-moment-shim": "~0.1.0"
   },
   "devDependencies": {
     "foundation": "~5.4.3",
