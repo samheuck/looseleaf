@@ -2,7 +2,9 @@
   <span class="label">Leaves</span>
   <div class="panel">
     <ul class="fa-ul">
-    {{#each leaf in content}}
+    {{input value=filterBy}}
+
+    {{#each leaf in leaves}}
       <li {{action "preview" leaf on="mouseEnter"}}>
         {{#link-to "leaf" leaf.id}}
         <i class="fa-li fa fa-leaf"></i>
@@ -23,6 +25,7 @@
   <span class="label">Preview</span>
   <div class="panel preview">
     <article>
+      updated: {{moment previewing.updated}}
       <h1>{{previewing.title}}</h1>
       {{parse-markdown previewing.body}}
     </article>
