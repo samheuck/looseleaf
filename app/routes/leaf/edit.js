@@ -14,6 +14,8 @@ export default Ember.Route.extend({
 
     actions: {
         save: function(leaf) {
+            leaf.set('updated', new Date());
+
             leaf.save().then(function () {
                 Notify.success({raw:'<i class="fa fa-cloud-upload"></i> Leaf Saved!'});
             }).catch(function (response) {
