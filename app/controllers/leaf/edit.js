@@ -1,35 +1,9 @@
-import config from '../../config/environment';
 import Ember from 'ember';
 import Notify from 'ember-notify';
 
 export default Ember.ObjectController.extend({
     showPreview: true,
     matchingTags: Ember.ArrayProxy.create(),
-
-    selectedTagChanged: function() {
-        Ember.run.debounce(this, this.updateMatchingTags, 500);
-    }.observes('selectedTag'),
-
-    updateMatchingTags: function() {
-        var controller = this,
-            url = "%@/%@/_design/tag/_view/substrings?include_docs=false&key=%22%@%22".fmt(
-                config.dbHost,
-                config.dbName,
-                this.get('selectedTag')
-            );
-
-        $.ajax(url).then(function (response) {
-            var result = JSON.parse(response);
-
-            if (result.rows.length) {
-                controller.get('matchingTags').set('content', result.rows.map(function (match) {
-                    return {tag: match.value, id: match.id};
-                }));
-            } else {
-                controller.get('matchingTags').set('content', []);
-            }
-        });
-    },
 
     updateTag: function(tag, updateLeaves) {
         var controller = this;

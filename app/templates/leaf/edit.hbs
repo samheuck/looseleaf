@@ -52,13 +52,7 @@
               </div>
 
               <div class="small-9 columns">
-                {{input type="text" value=selectedTag list="matching-tags" autocomplete="off"}}
-
-                <datalist id="matching-tags">
-                {{#each obj in matchingTags}}
-                  <option {{bind-attr value=obj.tag}}></option>
-                {{/each}}
-                </datalist>
+                {{tag-selector value=selectedTag tags=matchingTags}}
               </div>
             </div>
           </div>

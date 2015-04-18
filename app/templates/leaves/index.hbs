@@ -1,28 +1,36 @@
 <section class="small-12 medium-4 columns">
   <span class="label">Leaves</span>
-  <div class="panel">
-    <ul class="fa-ul">
-    {{input value=filterBy}}
 
-    {{#each leaf in leaves}}
-      <li {{action "preview" leaf on="mouseEnter"}}>
-        {{#link-to "leaf" leaf.id}}
-        <i class="fa-li fa fa-leaf"></i>
-          {{#if leaf.title}}
-            {{leaf.title}}
-          {{else}}
-            No title
-          {{/if}}
-        {{/link-to}}
-      </li>
-    {{/each}}
-    </ul>
+  <div class="panel">
+    <div class="row collapse">
+      <div class="small-3 columns">
+        <span class="prefix">Tag</span>
+      </div>
+
+      <div class="small-9 columns">
+        {{tag-selector value=filterBy}}
+      </div>
+    </div>
+
+    <div class="row">
+      <ul class="fa-ul">
+      {{#each leaf in leaves}}
+        <li {{action "preview" leaf on="mouseEnter"}}>
+          {{#link-to "leaf" leaf.id}}
+            <i class="fa-li fa fa-leaf"></i>
+            {{#if leaf.title}} {{leaf.title}} {{else}} No title {{/if}}
+          {{/link-to}}
+        </li>
+      {{/each}}
+      </ul>
+    </div>
   </div>
 </section>
 
 {{#if previewing}}
 <section class="small-12 medium-8 columns">
   <span class="label">Preview</span>
+
   <div class="panel preview">
     <article>
       updated: {{moment previewing.updated}}

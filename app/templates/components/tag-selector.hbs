@@ -1,0 +1,7 @@
+{{input type="text" value=value list="matching-tags" autocomplete="off"}}
+
+<datalist id="matching-tags">
+  {{#each tag in tags}}
+    <option {{bind-attr value=tag.tag}}></option>
+  {{/each}}
+</datalist>
