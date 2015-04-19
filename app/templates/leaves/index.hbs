@@ -13,11 +13,11 @@
     </div>
 
     <div class="row">
-      <ul class="fa-ul">
+      <ul class="no-bullet padl1">
       {{#each leaf in leaves}}
-        <li {{action "preview" leaf on="mouseEnter"}}>
+        <li {{action "preview" leaf on="mouseEnter"}} {{bind-attr class="leaf.active:active"}}>
           {{#link-to "leaf" leaf.id}}
-            <i class="fa-li fa fa-leaf"></i>
+            <i class="fa fa-leaf padl1 padr1"></i>
             {{#if leaf.title}} {{leaf.title}} {{else}} No title {{/if}}
           {{/link-to}}
         </li>

@@ -20,6 +20,13 @@ export default Ember.ArrayController.extend({
 
     actions: {
         preview: function (leaf) {
+            var previewing = this.get('previewing');
+
+            if (previewing) {
+                previewing.set('active', false);
+            }
+
+            leaf.set('active', true);
             this.set('previewing', leaf);
         }
     }

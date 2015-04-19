@@ -1,0 +1,13 @@
+$interval: 5px;
+
+.padr1 {
+    padding-right: $interval;
+}
+
+.padr2 {
+    padding-right: $interval * 2;
+}
+
+.padl1 {
+    padding-left: $interval;
+}

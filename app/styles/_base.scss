@@ -1,5 +1,6 @@
 $hover: rgb(0, 123, 160);
 $text-default: #444;
+$highlight: $hover;
 
 .preview {
     max-height: 780px;
@@ -49,6 +50,14 @@ $text-default: #444;
 i.large {
     display: block;
     font-size: 2em;
+}
+
+.active {
+    * {
+        color: #fff !important;
+    }
+
+    background: $highlight;
 }
 
 pre {
