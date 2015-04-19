@@ -3,7 +3,7 @@ import Notify from 'ember-notify';
 
 export default Ember.ObjectController.extend({
     showPreview: true,
-    matchingTags: Ember.ArrayProxy.create(),
+    availableTags: Ember.ArrayProxy.create(),
 
     updateTag: function(tag, updateLeaves) {
         var controller = this;
@@ -27,7 +27,7 @@ export default Ember.ObjectController.extend({
             var controller = this,
                 leaf = controller.get('model'),
                 selectedTag = this.get('selectedTag'),
-                matchedTag = this.get('matchingTags').findBy('tag', selectedTag),
+                matchedTag = this.get('availableTags').findBy('tag', selectedTag),
                 tagToAdd = matchedTag ?
                     controller.store.find('tag', matchedTag.id):
                     controller.store.createRecord('tag', {tag: selectedTag}).save();
