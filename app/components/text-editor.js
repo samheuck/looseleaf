@@ -2,38 +2,38 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-    tagName: "textarea",
+  tagName: "textarea",
 
-    editor: function() {
-        var self = this;
+  editor: function() {
+    var self = this;
 
-        var el = self.$().get(0);
-        var body = self.get('body');
+    var el = self.$().get(0);
+    var body = self.get('body');
 
-        var codemirror = new CodeMirror.fromTextArea(el, {
-            mode: 'markdown',
-            lineWrapping: true,
-            keyMap: 'sublime',
-            matchBrackets: true,
-            autoCloseBrackets: true,
-        });
+    var codemirror = new CodeMirror.fromTextArea(el, {
+      mode: 'markdown',
+      lineWrapping: true,
+      keyMap: 'sublime',
+      matchBrackets: true,
+      autoCloseBrackets: true,
+    });
 
-        codemirror.on("change", function (instance) {
-            Ember.run(function () {
-                self.set('body', instance.getValue());
-            });
-        });
+    codemirror.on("change", function (instance) {
+      Ember.run(function () {
+        self.set('body', instance.getValue());
+      });
+    });
 
-        codemirror.setValue(body);
+    codemirror.setValue(body);
 
-        this.set('editor', codemirror);
-    }.on('didInsertElement'),
+    this.set('editor', codemirror);
+  }.on('didInsertElement'),
 
-    update: function() {
-        var editor = this.get('editor');
+  update: function() {
+    var editor = this.get('editor');
 
-        if (editor.getValue() !== this.get('body')) {
-            editor.setValue(this.get('body'));
-        }
-    }.observes('body')
+    if (editor.getValue() !== this.get('body')) {
+      editor.setValue(this.get('body'));
+    }
+  }.observes('body')
 });
