@@ -29,8 +29,7 @@ export default Ember.ObjectController.extend({
         selectedTag = this.get('selectedTag'),
         matchedTag = this.get('availableTags').findBy('tag', selectedTag),
         tagToAdd = matchedTag ?
-          controller.store.find('tag', matchedTag.id):
-          controller.store.createRecord('tag', {tag: selectedTag}).save();
+          controller.store.find('tag', matchedTag.id) : controller.store.createRecord('tag', { tag: selectedTag }).save();
 
       tagToAdd.then(function (tag) {
         leaf.get('tags').then(function (tags) {
@@ -41,10 +40,10 @@ export default Ember.ObjectController.extend({
               leaves.addObject(leaf);
             });
 
-            Notify.success({raw: '<i class="fa fa-cloud-upload"></i> Tag added.'});
+            Notify.success({ raw: '<i class="fa fa-cloud-upload"></i> Tag added.' });
           }).catch(function (res) {
             if (409 === res.status) {
-              Notify.warning({raw: '<i class="fa fa-warning"></i> Leaf is stale, reload and try again.'});
+              Notify.warning({ raw: '<i class="fa fa-warning"></i> Leaf is stale, reload and try again.' });
             }
           });
         });
@@ -65,10 +64,10 @@ export default Ember.ObjectController.extend({
             leaves.removeObject(leaf);
           });
 
-          Notify.info({raw: '<i class="fa fa-info-circle"></i> Tag removed.'});
+          Notify.info({ raw: '<i class="fa fa-info-circle"></i> Tag removed.' });
         }).catch(function (res) {
           if (409 === res.status) {
-            Notify.warning({raw: '<i class="fa fa-warning"></i> Leaf is stale, reload and try again.'});
+            Notify.warning({ raw: '<i class="fa fa-warning"></i> Leaf is stale, reload and try again.' });
           }
         });
       });
@@ -100,7 +99,7 @@ export default Ember.ObjectController.extend({
 
       function notify() {
         leaf.reload();
-        Notify.success({raw: '<i class="fa fa-cloud-upload"></i> Attacment saved'});
+        Notify.success({ raw: '<i class="fa fa-cloud-upload"></i> Attacment saved' });
       }
 
       function error(err) {

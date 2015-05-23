@@ -31,5 +31,5 @@ export default Ember.Component.extend({
         component.get('tags').set('content', []);
       }
     });
-  },
+  }
 });

@@ -39,7 +39,7 @@ export default Ember.Route.extend({
           });
         }, leaf)).then(function () {
           leaf.destroyRecord();
-          Notify.success({raw: '<i class="fa fa-info-circle"></i> %@ deleted.'.fmt(title)});
+          Notify.success({ raw: '<i class="fa fa-info-circle"></i> %@ deleted.'.fmt(title) });
         });
       });
     }

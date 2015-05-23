@@ -15,7 +15,7 @@ export default Ember.Component.extend({
       lineWrapping: true,
       keyMap: 'sublime',
       matchBrackets: true,
-      autoCloseBrackets: true,
+      autoCloseBrackets: true
     });
 
     codemirror.on("change", function (instance) {

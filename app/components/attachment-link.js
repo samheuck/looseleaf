@@ -9,5 +9,5 @@ export default Ember.Component.extend({
     return '%@/%@/%@'.fmt(config.dbHost, config.dbName, this.get('uri'));
   }.property(),
 
-  target: '_blank',
+  target: '_blank'
 });

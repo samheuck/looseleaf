@@ -17,10 +17,10 @@ export default Ember.Route.extend({
       leaf.set('updated', new Date());
 
       leaf.save().then(function () {
-        Notify.success({raw:'<i class="fa fa-cloud-upload"></i> Leaf Saved!'});
+        Notify.success({ raw: '<i class="fa fa-cloud-upload"></i> Leaf Saved!' });
       }).catch(function (response) {
         if (response.status === 409) {
-          Notify.warning({raw: '<i class="fa fa-warning"></i> Leaf is stale. Reload before saving.'});
+          Notify.warning({ raw: '<i class="fa fa-warning"></i> Leaf is stale. Reload before saving.' });
         }
       });
     },
@@ -29,7 +29,7 @@ export default Ember.Route.extend({
       if (!leaf.get('isNew')) {
         leaf.rollback();
         leaf.reload().then(function () {
-          Notify.info({raw: '<i class="fa fa-info-circle"></i> Leaf has been refreshed.'});
+          Notify.info({ raw: '<i class="fa fa-info-circle"></i> Leaf has been refreshed.' });
         });
       }
     },
@@ -40,7 +40,7 @@ export default Ember.Route.extend({
         this.transitionTo("leaves");
       } else if (leaf.get('isDirty')) {
         leaf.rollback();
-        Notify.info({raw: '<i class="fa fa-info-circle"></i> Changes reverted.'});
+        Notify.info({ raw: '<i class="fa fa-info-circle"></i> Changes reverted.' });
         this.transitionTo('leaf', leaf.get('id'));
       } else {
         this.transitionTo('leaf', leaf.get('id'));
