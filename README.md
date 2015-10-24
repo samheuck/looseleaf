@@ -64,6 +64,7 @@ clone this repository then run
        "substrings": {
            "map": "function (doc) { var i; if (doc.tag) { emit(doc.tag, doc.tag); doc.tag.split(' ').map(function (token) {  for (i = 1; i <= token.length; i += 1) { emit(token.substring(0, i), doc.tag); }}); }}"
        }
+     }
    }
   ```
 
